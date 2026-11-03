@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascend — Your Fitness, Your Progress</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #173f31;
+      --green-2: #235944;
+      --cream: #f4f1e9;
+      --white: #ffffff;
+      --ink: #18231e;
+      --muted: #69736d;
+      --line: #dfe3dc;
+      --soft: #e8eee8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar {
+      background: rgba(244, 241, 233, .94);
+      border-bottom: 1px solid var(--line);
+      padding: 17px 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      color: var(--green) !important;
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .nav-link {
+      color: var(--ink) !important;
+      font-size: 14px;
+      margin-left: 18px;
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: #fff !important;
+      padding: 9px 18px !important;
+      border-radius: 22px;
+      margin-left: 22px !important;
+    }
+
+    .container-wide {
+      max-width: 1180px;
+      margin: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .hero {
+      padding: 82px 0 75px;
+    }
+
+    .hero-card {
+      background: var(--green);
+      border-radius: 30px;
+      overflow: hidden;
+      min-height: 620px;
+      position: relative;
+      color: white;
+    }
+
+    .hero-copy {
+      padding: 72px 58px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .68;
+    }
+
+    .hero h1 {
+      font-size: clamp(54px, 7vw, 88px);
+      line-height: .91;
+      letter-spacing: -5px;
+      font-weight: 900;
+      margin: 18px 0 25px;
+      max-width: 650px;
+    }
+
+    .hero p {
+      color: #dbe7e0;
+      font-size: 17px;
+      line-height: 1.65;
+      max-width: 500px;
+    }
+
+    .btn-main {
+      background: white;
+      color: var(--green);
+      border: none;
+      border-radius: 28px;
+      padding: 13px 25px;
+      font-weight: 800;
+      margin-top: 15px;
+    }
+
+    .btn-outline-light-custom {
+      color: white;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 28px;
+      padding: 12px 23px;
+      font-weight: 700;
+      margin-top: 15px;
+      margin-left: 8px;
+    }
+
+    /* CSS phone mockup */
+    .phone-wrap {
+      position: absolute;
+      right: 7%;
+      bottom: -55px;
+      transform: rotate(5deg);
+      z-index: 3;
+    }
+
+    .phone {
+      width: 280px;
+      height: 570px;
+      background: #f7f7f4;
+      border: 9px solid #101713;
+      border-radius: 38px;
+      padding: 18px;
+      box-shadow: 0 35px 70px rgba(0,0,0,.35);
+      color: var(--ink);
+    }
+
+    .phone-notch {
+      width: 95px;
+      height: 23px;
+      background: #101713;
+      border-radius: 20px;
+      margin: -18px auto 16px;
+    }
+
+    .app-small {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .phone-title {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin: 8px 0 15px;
+    }
+
+    .phone-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+
+    .phone-number {
+      font-size: 27px;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .phone-muted {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .phone-progress {
+      height: 6px;
+      background: #e3e8e2;
+      border-radius: 10px;
+      margin-top: 9px;
+    }
+
+    .phone-progress div {
+      height: 100%;
+      width: 68%;
+      background: var(--green);
+      border-radius: 10px;
+    }
+
+    .section {
+      padding: 75px 0;
+    }
+
+    .section-head {
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .section-head h2 {
+      font-size: 48px;
+      line-height: 1;
+      letter-spacing: -3px;
+      font-weight: 900;
+      margin: 12px 0;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 34px;
+      min-height: 310px;
+      height: 100%;
+    }
+
+    .feature-card.large {
+      background: var(--soft);
+    }
+
+    .feature-number {
+      color: var(--green);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .feature-card h3 {
+      font-size: 27px;
+      letter-spacing: -1px;
+      font-weight: 900;
+      margin: 70px 0 12px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .showcase {
+      background: var(--ink);
+      border-radius: 30px;
+      color: white;
+      padding: 55px;
+      overflow: hidden;
+    }
+
+    .showcase h2 {
+      font-size: 48px;
+      line-height: 1;
+      letter-spacing: -3px;
+      font-weight: 900;
+    }
+
+    .showcase p {
+      color: #bfc9c3;
+      line-height: 1.7;
+      max-width: 500px;
+    }
+
+    .dashboard {
+      background: #f8f8f5;
+      color: var(--ink);
+      border-radius: 22px;
+      padding: 25px;
+      max-width: 460px;
+      margin-left: auto;
+      transform: rotate(-2deg);
+      box-shadow: 0 25px 55px rgba(0,0,0,.25);
+    }
+
+    .dash-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .dash-title {
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .dash-box {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 17px;
+    }
+
+    .dash-value {
+      color: var(--green);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .download {
+      padding: 80px 0;
+    }
+
+    .download-card {
+      background: #dfe9df;
+      border-radius: 30px;
+      padding: 55px;
+      text-align: center;
+    }
+
+    .download-card h2 {
+      font-size: 50px;
+      font-weight: 900;
+      letter-spacing: -3px;
+    }
+
+    .store-btn {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      border-radius: 28px;
+      padding: 13px 24px;
+      margin: 12px 5px 0;
+      font-weight: 800;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 992px) {
+      .phone-wrap {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        transform: rotate(3deg);
+        display: flex;
+        justify-content: center;
+        margin: 20px 0 -70px;
+      }
+
+      .hero-card { min-height: auto; }
+      .hero-copy { padding: 55px 35px 0; }
+      .dashboard { margin: 35px auto 0; }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1, .section-head h2, .showcase h2, .download-card h2 {
+        letter-spacing: -2px;
+      }
+
+      .hero-copy { padding: 45px 25px 0; }
+      .showcase, .download-card { padding: 35px 24px; }
+      .phone { width: 250px; height: 510px; }
+      .phone-wrap { margin-bottom: -55px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand brand" href="#">ASCEND</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="siteNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">How It Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Captains</a></li>
+        <li class="nav-item"><a class="nav-link nav-cta" href="#">Get Ascend</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container-wide">
+    <div class="hero-card">
+      <div class="hero-copy">
+        <div class="eyebrow">Fitness · Nutrition · Progress</div>
+        <h1>Train with a plan. Live with purpose.</h1>
+        <p>
+          Ascend is the fitness app built to bring your workouts,
+          nutrition and progress together — without making fitness complicated.
+        </p>
+
+        <a href="#" class="btn btn-main">Get Ascend</a>
+        <a href="#" class="btn btn-outline-light-custom">See how it works</a>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="app-small">ASCEND</div>
+          <div class="phone-title">Good morning.</div>
+
+          <div class="phone-card">
+            <div class="phone-muted">DAILY CALORIES</div>
+            <div class="phone-number">1,240 <span style="font-size:11px;color:#69736d;">/ 2,400 kcal</span></div>
+            <div class="phone-progress"><div></div></div>
+          </div>
+
+          <div class="phone-card">
+            <div class="phone-muted">TODAY'S WORKOUT</div>
+            <strong>Push Day</strong>
+            <div class="phone-muted mt-2">Chest · Shoulders · Triceps</div>
+          </div>
+
+          <div class="phone-card">
+            <div class="phone-muted">PROGRESS</div>
+            <div class="row mt-2">
+              <div class="col-6"><strong>7,420</strong><br><span class="phone-muted">steps</span></div>
+              <div class="col-6"><strong>1.8 L</strong><br><span class="phone-muted">water</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="container-wide">
+    <div class="section-head">
+      <div class="eyebrow">One app. Your whole routine.</div>
+      <h2>Everything you need to keep moving.</h2>
+      <p>
+        Ascend connects the parts of your fitness journey that are usually
+        scattered across different apps, notes and spreadsheets.
+      </p>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-7">
+        <div class="feature-card large">
+          <div class="feature-number">01 / WORKOUTS</div>
+          <h3>Train smarter.</h3>
+          <p>Follow your workout, log exercises and keep your training history in one place.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="feature-card">
+          <div class="feature-number">02 / NUTRITION</div>
+          <h3>Know what you eat.</h3>
+          <p>Track calories and macros without turning every meal into a complicated calculation.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="feature-card">
+          <div class="feature-number">03 / PROGRESS</div>
+          <h3>See the change.</h3>
+          <p>Keep an eye on weight, steps, water and your consistency over time.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="feature-card large">
+          <div class="feature-number">04 / PERSONALIZED</div>
+          <h3>Built around you.</h3>
+          <p>Your calorie target and goals start with your own information, activity level and direction.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="container-wide">
+    <div class="showcase">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="eyebrow">Your progress, clearly.</div>
+          <h2 class="mt-3">Stop guessing. Start seeing.</h2>
+          <p class="mt-4">
+            From today's workout to your daily calories, Ascend gives you
+            a simple picture of where you are and what comes next.
+          </p>
+          <a class="btn btn-main mt-3">Start your journey</a>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="dashboard">
+            <div class="dash-top">
+              <div class="dash-title">Your week</div>
+              <small>Progress</small>
+            </div>
+
+            <div class="dash-grid">
+              <div class="dash-box">
+                <small>WORKOUTS</small>
+                <div class="dash-value">4</div>
+              </div>
+              <div class="dash-box">
+                <small>STEPS</small>
+                <div class="dash-value">2k</div>
+              </div>
+              <div class="dash-box">
+                <small>WATER</small>
+                <div class="dash-value">1.2L</div>
+              </div>
+              <div class="dash-box">
+                <small>WEIGHT</small>
+                <div class="dash-value">115.2</div>
+              </div>
+            </div>
+
+            <div class="dash-box mt-3">
+              <small>CONSISTENCY</small>
+              <div class="progress mt-2" style="height:7px;">
+                <div class="progress-bar" style="width:82%;background:#173f31;"></div>
+              </div>
+              <small class="d-block mt-2">82% this week</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="captains">
+  <div class="container-wide">
+    <div class="section-head">
+      <div class="eyebrow">Ascend Captains</div>
+      <h2>Don't do it alone.</h2>
+      <p>
+        Connect with fitness captains who can help you stay accountable,
+        follow a structured plan and keep progressing.
+      </p>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-number">01</div>
+          <h3>Guidance</h3>
+          <p>Get direction instead of wondering what to do next.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-number">02</div>
+          <h3>Accountability</h3>
+          <p>Stay consistent with someone keeping you on track.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-number">03</div>
+          <h3>Your goals</h3>
+          <p>Work toward a plan that matches where you want to go.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="download" id="download">
+  <div class="container-wide">
+    <div class="download-card">
+      <div class="eyebrow">Ready when you are.</div>
+      <h2 class="mt-3">Your next level starts here.</h2>
+      <p class="mx-auto mt-3" style="max-width:560px;color:#59645e;">
+        Download Ascend and bring your workouts, nutrition and progress together.
+      </p>
+      <a class="store-btn">Download on the App Store</a>
+      <a class="store-btn">Get it on Google Play</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container d-flex justify-content-between flex-wrap gap-2">
+    <span><strong>ASCEND</strong></span>
+    <span>Train. Track. Ascend.</span>
+    <span>© 2026 Ascend</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
